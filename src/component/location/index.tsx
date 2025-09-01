@@ -25,28 +25,22 @@ export const Location = () => {
           <div className="content">
             * 지하철 이용시
             <br />
-            지하철 2호선 <b>낙성대역 4번출구</b> 나와서
+            인천지하철 1호선 <b>계산역 1번출구</b> 바로 앞 위치
             <br />
-            → 첫번째 골목 끼고 좌회전
-            <br />→ 마을버스 <b>관악 02번</b> 승차
-            <br />→ <b>서울대후문·연구공원 정류장</b> 하차
-            <br />
-            → 길 건너 간판 참고해 도보로 100m 이동
-            <br />
-            검은색 피라미드 유리 건물입니다.
+
           </div>
           <div />
           <div className="content">
             * 버스 이용 시
             <br />
-            - 간선(파랑): 461, 641
+            - 간선: 24-1, 30, 79, 80
             <br />
-            - 지선(초록): 5413, 5524, 5528
+            - 일반: 81, 88
             <br />
-            반드시 <b>낙성대입구</b> 하차
-            <br />→ 마을버스 <b>관악 02번</b> 이용
+            - 광역: 1500, 9500
             <br />
-            이하 위와 동일합니다.
+            - 시외: 3000, 3030, 5000
+            <br />
           </div>
         </div>
         <div className="location-info">
@@ -56,22 +50,54 @@ export const Location = () => {
           <div className="heading">자가용</div>
           <div />
           <div className="content">
-            네이버 지도, 카카오 네비, 티맵 등 이용
-            <br />
-            <b>서울대학교 연구공원 웨딩홀</b> 검색
-            <br />
-            - 주차 요금은 무료입니다.
+
+            - 주차 요금은 2시간 무료입니다.
             <br />
             (주차장 이용 시 웨딩홀과 바로 연결)
           </div>
           <div />
+          {/*<div className="content">*/}
+          {/*  <b>*/}
+          {/*    ※ 서울대학교 정, 후문을 통과할 경우 통행료가 발생하므로*/}
+          {/*    유의바랍니다. 낙성대 방향으로 이용해주세요.*/}
+          {/*  </b>*/}
+          {/*</div>*/}
+        </div>
+
+        <div className="location-info">
+          <div className="transportation-icon-wrapper">
+            <BusIcon className="transportation-icon" />
+          </div>
+          <div className="heading">제천 전세버스 대절</div>
+          <div />
           <div className="content">
-            <b>
-              ※ 서울대학교 정, 후문을 통과할 경우 통행료가 발생하므로
-              유의바랍니다. 낙성대 방향으로 이용해주세요.
-            </b>
+
+            - 일시 : 11월 30일, 기사님 연락처(010-1111-222)
+            <br />
+            - 출발 : 08시 (제천 수산면 능강리 마을회관 앞)
+            <br />
+            - 출발 : 09시 (제천역 광장)
+            <br />
+
           </div>
         </div>
+
+        <div className="location-info">
+          <div className="transportation-icon-wrapper">
+            <CarIcon className="transportation-icon" />
+          </div>
+          <div className="heading">제천 피로연</div>
+          <div />
+          <div className="content">
+
+            - 일시 : 11월 21일(금)
+            <br />
+            - 장소 : 제천시 수산면 능강리 호수민박펜션
+            <br />
+
+          </div>
+        </div>
+
       </LazyDiv>
     </>
   )

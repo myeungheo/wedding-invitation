@@ -123,14 +123,14 @@ const NaverMap = () => {
             switch (checkDevice()) {
               case "ios":
               case "android":
-                if (kakao)
-                  kakao.Navi.start({
-                    name: LOCATION,
-                    x: WEDDING_HALL_POSITION[0],
-                    y: WEDDING_HALL_POSITION[1],
-                    coordType: "wgs84",
-                  })
-                break
+                // if (kakao)
+                //   kakao.Navi.start({
+                //     name: LOCATION,
+                //     x: WEDDING_HALL_POSITION[0],
+                //     y: WEDDING_HALL_POSITION[1],
+                //     coordType: "wgs84",
+                //   })
+                // break
               default:
                 window.open(
                   `https://map.kakao.com/link/map/${KMAP_PLACE_ID}`,
@@ -141,7 +141,7 @@ const NaverMap = () => {
           }}
         >
           <img src={knaviIcon} alt="kakao-navi-icon" />
-          카카오 내비
+          카카오 지도
         </button>
         <button
           onClick={() => {
