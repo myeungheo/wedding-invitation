@@ -4,7 +4,7 @@ import {
   LOCATION,
   WEDDING_DATE,
 } from "../../const"
-import coverImage from "../../image/cover.png"
+import coverImage from "../../image/new/cover.jpg"
 import { LazyDiv } from "../lazyDiv"
 
 const DAY_OF_WEEK = [
@@ -40,7 +40,7 @@ export const Cover = () => {
         {BRIDE_FULLNAME}
       </div>
       <div className="info">
-        {WEDDING_DATE.format("YYYY년 MMMM D일 dddd A h시")}
+        {WEDDING_DATE.format("YYYY년 MMMM D일 dddd A h시 mm분")}
       </div>
       <div className="info">{LOCATION}</div>
     </LazyDiv>
