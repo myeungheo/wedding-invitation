@@ -2,7 +2,7 @@ import { Map } from "./map"
 import { ReactComponent as CarIcon } from "../../image/car-icon.svg"
 import { ReactComponent as BusIcon } from "../../image/bus-icon.svg"
 import { LazyDiv } from "../lazyDiv"
-import { LOCATION, LOCATION_ADDRESS } from "../../const"
+import { LOCATION, LOCATION_ADDRESS, LOCATION_FULL } from "../../const"
 
 export const Location = () => {
   return (
@@ -10,7 +10,7 @@ export const Location = () => {
       <LazyDiv className="card location">
         <h2 className="english">Location</h2>
         <div className="addr">
-          {LOCATION}
+          {LOCATION_FULL}
           <div className="detail">{LOCATION_ADDRESS}</div>
         </div>
         <Map />
@@ -72,9 +72,11 @@ export const Location = () => {
           <div />
           <div className="content">
 
-            - 일시 : 11월 30일, 기사님 연락처(010-1111-222)
+            - 일시 : 11월 30일
             <br />
-            - 출발 : 08시 (제천 수산면 능강리 마을회관 앞)
+            - 기사님 연락처 : 010-4499-8884
+            <br />
+            - 출발 : 08시 (능강리 마을회관)
             <br />
             - 출발 : 09시 (제천역 광장)
             <br />
@@ -90,9 +92,11 @@ export const Location = () => {
           <div />
           <div className="content">
 
-            - 일시 : 11월 21일(금)
+            - 일시 : 11월 21일(금) 오후 4시 ~ 6시
             <br />
-            - 장소 : 제천시 수산면 능강리 호수민박펜션
+            - 장소 : 청풍 황금송어
+            <br />
+            - 주소 : 제천시 금성면 성내리 173번지
             <br />
 
           </div>

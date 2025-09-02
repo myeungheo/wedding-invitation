@@ -1,4 +1,6 @@
 import { Fragment } from "react/jsx-runtime"
+import { ReactComponent as FlowerIcon } from "../../image/flower.svg"
+
 import {
   BRIDE_FULLNAME,
   BRIDE_INFO,
@@ -25,7 +27,7 @@ export const Invitation = () => {
 
       <div className="break" />
 
-      <div className="content">싱그러운 여름 향기 가득한 날</div>
+      <div className="content">황금빛 낙엽이 물드는 계절</div>
       <div className="content">소중한 분들을 모시고</div>
       <div className="content">사랑의 약속을 하려고 합니다.</div>
       <div className="break" />
@@ -46,6 +48,7 @@ export const Invitation = () => {
         {GROOM_FULLNAME}
       </div>
       <div className="name">
+        <FlowerIcon className="arrow" />
         {BRIDE_FATHER} · {BRIDE_MOTHER}
         <span className="relation">
           의 <span className="relation-name">{BRIDE_TITLE}</span>
