@@ -42,7 +42,7 @@ export const BRIDE_INFO = [
     relation: "신부",
     name: BRIDE_FULLNAME,
     phone: "010-7197-3096",
-    account: "국민 406602 04 286864",
+    account: "국민 308301 04 286864",
   },
   // {
   //   relation: "신부 아버지",
