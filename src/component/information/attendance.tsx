@@ -12,6 +12,18 @@ import { ReactComponent as HeartIcon } from "../../image/heart-icon.svg"
 import { ReactComponent as CalendarIcon } from "../../image/calendar-icon.svg"
 import { ReactComponent as MarkerIcon } from "../../image/marker-icon.svg"
 
+
+import {
+  collection,
+  addDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  doc
+} from "firebase/firestore";
+import { db } from "../../utils/firebase";
+
+
 const RULES = {
   name: {
     maxLength: 10,
@@ -178,19 +190,23 @@ const AttendanceModalContent = () => {
             return
           }
 
-          const res = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/attendance`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ side, name, meal, count }),
-            },
-          )
-          if (!res.ok) {
-            throw new Error(res.statusText)
-          }
+
+          const docRef = await addDoc(collection(db, "reservation"), { side: side, name: name, meal: meal, count: count });
+
+          // const res = await fetch(
+          //   `${process.env.REACT_APP_SERVER_URL}/attendance`,
+          //   {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify({ side, name, meal, count }),
+          //   },
+          // )
+
+          // if (!res.ok) {
+          //   throw new Error(res.statusText)
+          // }
 
           alert("참석 의사가 성공적으로 전달되었습니다.")
           closeModal()

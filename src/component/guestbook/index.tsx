@@ -5,6 +5,18 @@ import { LazyDiv } from "../lazyDiv"
 import { useModal } from "../store"
 import offlineGuestBook from "./offlineGuestBook.json"
 
+import {
+  collection,
+  addDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query, orderBy, limit, getDocs
+} from "firebase/firestore";
+import { db } from "../../utils/firebase";
+
+
 const RULES = {
   name: {
     maxLength: 10,
@@ -36,14 +48,36 @@ export const GuestBook = () => {
   const loadPosts = async () => {
     if (process.env.REACT_APP_SERVER_URL) {
       try {
-        const res = await fetch(
-          `${process.env.REACT_APP_SERVER_URL}/guestbook?offset=${0}&limit=${3}`,
-        )
-        if (res.ok) {
-          const data = await res.json()
+        // const res = await fetch(
+        //   `${process.env.REACT_APP_SERVER_URL}/guestbook?offset=${0}&limit=${3}`,
+        // )
+        // if (res.ok) {
+        //   const data = await res.json()
+        //
+        //   setPosts(data.posts)
+        // }
 
-          setPosts(data.posts)
+        const q = query(
+          collection(db, "guest"),
+          orderBy("timestamp", "desc"), // ✅ timestamp 기준 내림차순 정렬
+          limit(5)
+        );
+
+        const snapshot = await getDocs(q);
+        var index = 1;
+
+        const datas: Post[] = snapshot.docs.map((doc) => {
+          const data = doc.data() as Omit<Post, "id">;
+          return {
+            id: index++,  // 0부터 1씩 증가
+            ...data
+          };
+        });
+
+        if (datas.length > 0) {
+          setPosts(datas)
         }
+
       } catch {}
     } else {
       setPosts(offlineGuestBook.slice(0, 3))
@@ -159,27 +193,27 @@ export const GuestBook = () => {
         </>
       )}
 
-      <Button
-        onClick={() =>
-          openModal({
-            className: "all-guestbook-modal",
-            closeOnClickBackground: true,
-            header: <div className="title">방명록 전체보기</div>,
-            content: <AllGuestBookModal loadPosts={loadPosts} />,
-            footer: (
-              <Button
-                buttonStyle="style2"
-                className="bg-light-grey-color text-dark-color"
-                onClick={closeModal}
-              >
-                닫기
-              </Button>
-            ),
-          })
-        }
-      >
-        방명록 전체보기
-      </Button>
+      {/*<Button*/}
+      {/*  onClick={() =>*/}
+      {/*    openModal({*/}
+      {/*      className: "all-guestbook-modal",*/}
+      {/*      closeOnClickBackground: true,*/}
+      {/*      header: <div className="title">방명록 전체보기</div>,*/}
+      {/*      content: <AllGuestBookModal loadPosts={loadPosts} />,*/}
+      {/*      footer: (*/}
+      {/*        <Button*/}
+      {/*          buttonStyle="style2"*/}
+      {/*          className="bg-light-grey-color text-dark-color"*/}
+      {/*          onClick={closeModal}*/}
+      {/*        >*/}
+      {/*          닫기*/}
+      {/*        </Button>*/}
+      {/*      ),*/}
+      {/*    })*/}
+      {/*  }*/}
+      {/*>*/}
+      {/*  방명록 전체보기*/}
+      {/*</Button>*/}
     </LazyDiv>
   )
 }
@@ -234,19 +268,23 @@ const WriteGuestBookModal = ({ loadPosts }: { loadPosts: () => void }) => {
             return
           }
 
-          const res = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/guestbook`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ name, content, password }),
-            },
-          )
-          if (!res.ok) {
-            throw new Error(res.statusText)
-          }
+          // const res = await fetch(
+          //   `${process.env.REACT_APP_SERVER_URL}/guestbook`,
+          //   {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify({ name, content, password }),
+          //   },
+          // )
+
+          const docRef = await addDoc(collection(db, "guest"), { name: name, content: content, password: password, timestamp: Math.floor(Date.now() / 1000) });
+
+
+          // if (!res.ok) {
+          //   throw new Error(res.statusText)
+          // }
 
           alert("방명록 작성이 완료되었습니다.")
           closeModal()
