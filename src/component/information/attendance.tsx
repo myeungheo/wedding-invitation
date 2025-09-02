@@ -48,53 +48,54 @@ export const AttendanceInfo = () => {
     if (!process.env.REACT_APP_SERVER_URL || WEDDING_DATE.isBefore(now.current))
       return
 
-    openModal({
-      className: "attendance-info-modal",
-      header: <div className="title">참석 의사 전달 안내</div>,
-      content: (
-        <>
-          <div className="info-message">
-            축하의 마음으로 참석해주시는
-            <br />
-            모든 분들을 귀하게 모실 수 있도록
-            <br />
-            참석 및 식사 여부를 미리 여쭙고자 합니다.
-            <div className="break" />
-            부담없이 알려주시면
-            <br />
-            정성껏 준비하겠습니다.
-          </div>
-          <div className="wedding-info">
-            <HeartIcon /> 신랑 {GROOM_FULLNAME} & 신부 {BRIDE_FULLNAME}
-            <br />
-            <CalendarIcon /> {WEDDING_DATE.format("YYYY년 MMMM D일 dddd A h시 mm분")}
-            <br />
-            <MarkerIcon /> {LOCATION}
-          </div>
-        </>
-      ),
-      footer: (
-        <>
-          <Button
-            buttonStyle="style2"
-            onClick={() => {
-              closeModal()
-              openModal(attendanceModalInfo)
-            }}
-          >
-            참석 의사 전달하기
-          </Button>
-          <Button
-            buttonStyle="style2"
-            className="bg-light-grey-color text-dark-color"
-            onClick={closeModal}
-          >
-            닫기
-          </Button>
-        </>
-      ),
-    })
+    // openModal({
+    //   className: "attendance-info-modal",
+    //   header: <div className="title">참석 의사 전달 안내</div>,
+    //   content: (
+    //     <>
+    //       <div className="info-message">
+    //         축하의 마음으로 참석해주시는
+    //         <br />
+    //         모든 분들을 귀하게 모실 수 있도록
+    //         <br />
+    //         참석 및 식사 여부를 미리 여쭙고자 합니다.
+    //         <div className="break" />
+    //         부담없이 알려주시면
+    //         <br />
+    //         정성껏 준비하겠습니다.
+    //       </div>
+    //       <div className="wedding-info">
+    //         <HeartIcon /> 신랑 {GROOM_FULLNAME} & 신부 {BRIDE_FULLNAME}
+    //         <br />
+    //         <CalendarIcon /> {WEDDING_DATE.format("YYYY년 MMMM D일 dddd A h시 mm분")}
+    //         <br />
+    //         <MarkerIcon /> {LOCATION}
+    //       </div>
+    //     </>
+    //   ),
+    //   footer: (
+    //     <>
+    //       <Button
+    //         buttonStyle="style2"
+    //         onClick={() => {
+    //           closeModal()
+    //           openModal(attendanceModalInfo)
+    //         }}
+    //       >
+    //         참석 의사 전달하기
+    //       </Button>
+    //       <Button
+    //         buttonStyle="style2"
+    //         className="bg-light-grey-color text-dark-color"
+    //         onClick={closeModal}
+    //       >
+    //         닫기
+    //       </Button>
+    //     </>
+    //   ),
+    // })
   }, [openModal, closeModal])
+
 
   if (!process.env.REACT_APP_SERVER_URL || WEDDING_DATE.isBefore(now.current))
     return null

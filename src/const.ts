@@ -2,18 +2,14 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 import "dayjs/locale/ko"
-import image1 from "./image/image1.png"
-import image2 from "./image/image2.png"
-import image3 from "./image/image3.png"
-import image4 from "./image/image4.png"
-import image5 from "./image/image5.png"
-import image6 from "./image/image6.png"
-import image7 from "./image/image7.png"
-import image8 from "./image/image8.png"
-import image9 from "./image/image9.png"
-import image10 from "./image/image10.png"
-import image11 from "./image/image11.png"
-import image12 from "./image/image12.png"
+import image1 from "./image/new/galary/1.jpg"
+import image2 from "./image/new/galary/2.jpg"
+import image3 from "./image/new/galary/3.jpg"
+import image4 from "./image/new/galary/4.jpg"
+import image5 from "./image/new/galary/5.jpg"
+import image6 from "./image/new/galary/6.jpg"
+import image7 from "./image/new/galary/7.jpg"
+import image8 from "./image/new/galary/8.jpg"
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -95,9 +91,5 @@ export const GALLERY_IMAGES = [
   image5,
   image6,
   image7,
-  image8,
-  image9,
-  image10,
-  image11,
-  image12,
+  image8
 ]
