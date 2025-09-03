@@ -2,11 +2,26 @@
   .ktalk-share {
     position: relative;
     z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+
     font-size: 0.8rem;
-    display: inline-block;
+    font-weight: 600;
+    color: #3c1e1e; // 카카오 브라운 계열 텍스트 색
+    background-color: #FEE500; // 카카오톡 노란색
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #fdd835; // hover 시 살짝 진한 노랑
+    }
+
     img {
-      width: 0.7rem;
-      height: 0.7rem;
+      width: 0.9rem;
+      height: 0.9rem;
     }
   }
 }

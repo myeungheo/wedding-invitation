@@ -1,11 +1,41 @@
-import { BRIDE_INFO, GROOM_INFO } from "../../const"
+import { BRIDE_FIRSTNAME, BRIDE_INFO, GROOM_FIRSTNAME, GROOM_INFO, WEDDING_DATE } from "../../const"
 import { Button } from "../button"
 import { LazyDiv } from "../lazyDiv"
 import { useModal } from "../store"
 import { AttendanceInfo } from "./attendance"
+import { useEffect, useMemo, useState } from "react"
 
 export const Information = () => {
   const { openModal, closeModal } = useModal()
+  const [tsDiff, setTsDiff] = useState(WEDDING_DATE.diff())
+
+  const dayDiff = useMemo(() => {
+    const dayOffset = WEDDING_DATE.diff(WEDDING_DATE.startOf("day"))
+    return Math.ceil((tsDiff - dayOffset) / 1000 / 60 / 60 / 24)
+  }, [tsDiff])
+
+
+  const diffs = useMemo(() => {
+    const tsDiff_ = Math.abs(tsDiff)
+    const seconds = Math.floor((tsDiff_ % 60000) / 1000)
+    const minutes = Math.floor((tsDiff_ % 3600000) / 60000)
+    const hours = Math.floor((tsDiff_ % 86400000) / 3600000)
+    const days = Math.floor(tsDiff_ / 86400000)
+    const isAfter = tsDiff < 0
+
+    return { days, hours, minutes, seconds, isAfter }
+  }, [tsDiff])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const diff = WEDDING_DATE.diff()
+
+      setTsDiff(diff)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  })
+
   return (
     <LazyDiv className="card information">
       <h2 className="english">Information</h2>
@@ -137,6 +167,42 @@ export const Information = () => {
         </Button>
       </div>
       <AttendanceInfo />
+
+      <div>
+        <div className="countdown-wrapper">
+          <div className="countdown">
+            <div className="unit">DAY</div>
+            <div />
+            <div className="unit">HOUR</div>
+            <div />
+            <div className="unit">MIN</div>
+            <div />
+            <div className="unit">SEC</div>
+            <div className="count">{diffs.days}</div>
+            <span>:</span>
+            <div className="count">{diffs.hours}</div>
+            <span>:</span>
+            <div className="count">{diffs.minutes}</div>
+            <span>:</span>
+            <div className="count">{diffs.seconds}</div>
+          </div>
+          <div className="message">
+            {GROOM_FIRSTNAME} & {BRIDE_FIRSTNAME}의 결혼식이{" "}
+            {dayDiff > 0 ? (
+              <>
+                <span className="d-day">{dayDiff}</span>일 남았습니다.
+              </>
+            ) : dayDiff === 0 ? (
+              <>오늘입니다.</>
+            ) : (
+              <>
+                <span className="d-day">{-dayDiff}</span>일 지났습니다.
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
     </LazyDiv>
   )
 }
