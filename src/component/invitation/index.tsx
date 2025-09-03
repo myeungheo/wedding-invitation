@@ -75,47 +75,59 @@ export const Invitation = () => {
               <>
                 <div className="contact-info">
                   {GROOM_INFO.filter(({ phone }) => !!phone).map(
-                    ({ relation, name, phone }) => (
+                    ({ relation, name, phone, flower }) => (
                       <Fragment key={relation}>
                         <div className="relation">{relation}</div>
                         <div>{name}</div>
-                        <div>
-                          <PhoneIcon
-                            className="flip icon"
-                            onClick={() => {
-                              window.open(`tel:${phone}`, "_self")
-                            }}
-                          />
-                          <EnvelopeIcon
-                            className="icon"
-                            onClick={() => {
-                              window.open(`sms:${phone}`, "_self")
-                            }}
-                          />
-                        </div>
+                        {!flower ? <div>
+                            <PhoneIcon
+                              className="flip icon"
+                              onClick={() => {
+                                window.open(`tel:${phone}`, "_self")
+                              }}
+                            />
+                            <EnvelopeIcon
+                              className="icon"
+                              onClick={() => {
+                                window.open(`sms:${phone}`, "_self")
+                              }}
+                            />
+                          </div>
+                          :
+                          <div></div>
+                        }
                       </Fragment>
                     ),
                   )}
                 </div>
                 <div className="contact-info">
                   {BRIDE_INFO.filter(({ phone }) => !!phone).map(
-                    ({ relation, name, phone }) => (
+                    ({ relation, name, phone, flower }) => (
                       <Fragment key={relation}>
                         <div className="relation">{relation}</div>
-                        <div>{name}</div>
                         <div>
-                          <PhoneIcon
-                            className="flip icon"
-                            onClick={() => {
-                              window.open(`tel:${phone}`, "_self")
-                            }}
-                          />
-                          <EnvelopeIcon
-                            className="icon"
-                            onClick={() => {
-                              window.open(`sms:${phone}`, "_self")
-                            }}
-                          />
+                          {flower && <FlowerIcon className="arrow" /> }
+                          {name}
+                        </div>
+                        <div>
+                          {!flower ? <div>
+                              <PhoneIcon
+                                className="flip icon"
+                                onClick={() => {
+                                  window.open(`tel:${phone}`, "_self")
+                                }}
+                              />
+                              <EnvelopeIcon
+                                className="icon"
+                                onClick={() => {
+                                  window.open(`sms:${phone}`, "_self")
+                                }}
+                              />
+                            </div>
+                            :
+                            <div>
+                            </div>
+                          }
                         </div>
                       </Fragment>
                     ),

@@ -4,6 +4,7 @@ import { LazyDiv } from "../lazyDiv"
 import { useModal } from "../store"
 import { AttendanceInfo } from "./attendance"
 import { useEffect, useMemo, useState } from "react"
+import { ReactComponent as FlowerIcon } from "../../image/flower.svg"
 
 export const Information = () => {
   const { openModal, closeModal } = useModal()
@@ -123,29 +124,36 @@ export const Information = () => {
               content: (
                 <>
                   {BRIDE_INFO.filter(({ account }) => !!account).map(
-                    ({ relation, name, account }) => (
+                    ({ relation, name, account, flower }) => (
                       <div className="account-info" key={relation}>
                         <div>
                           <div className="name">
-                            <span className="relation">{relation}</span> {name}
+                            <span className="relation">{relation}</span>
+                            {flower && <FlowerIcon className="arrow" />}
+                            {name}
                           </div>
-                          <div>{account}</div>
+                          {!flower ? <div> {account}</div>
+                            : <div> </div>
+                          }
                         </div>
-                        <Button
-                          className="copy-button"
-                          onClick={async () => {
-                            if (account) {
-                              try {
-                                navigator.clipboard.writeText(account)
-                                alert(account + "\n복사되었습니다.")
-                              } catch {
-                                alert("복사에 실패했습니다.")
+                        {!flower &&
+                          <Button
+                            className="copy-button"
+                            onClick={async () => {
+                              if (account) {
+                                try {
+                                  navigator.clipboard.writeText(account)
+                                  alert(account + "\n복사되었습니다.")
+                                } catch {
+                                  alert("복사에 실패했습니다.")
+                                }
                               }
-                            }
-                          }}
-                        >
-                          복사하기
-                        </Button>
+                            }}
+                          >
+
+                            복사하기
+                          </Button>
+                        }
                       </div>
                     ),
                   )}
