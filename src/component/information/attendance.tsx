@@ -117,7 +117,7 @@ export const AttendanceInfo = () => {
           openModal(attendanceModalInfo)
         }}
       >
-        참석 의사 전달하기
+        참석 의사 미리 전달하기
       </Button>
     </div>
   )

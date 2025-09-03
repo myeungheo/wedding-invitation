@@ -68,7 +68,7 @@ export const Location = () => {
           <div className="transportation-icon-wrapper">
             <BusIcon className="transportation-icon" />
           </div>
-          <div className="heading">제천 전세버스 대절</div>
+          <div className="heading">[신랑측] 제천 전세버스 대절</div>
           <div />
           <div className="content">
 
@@ -88,7 +88,7 @@ export const Location = () => {
           <div className="transportation-icon-wrapper">
             <CarIcon className="transportation-icon" />
           </div>
-          <div className="heading">제천 피로연</div>
+          <div className="heading">[신랑측] 제천 피로연</div>
           <div />
           <div className="content">
 
