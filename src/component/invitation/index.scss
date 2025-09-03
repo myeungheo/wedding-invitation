@@ -23,6 +23,8 @@
 
 .contact-modal {
   width: 22rem;
+  border-radius: 12px; // ⭐ 모서리 라운딩 추가
+  overflow: hidden;    // ⭐ 내부 요소가 라운딩 영역 밖으로 안 삐져나오게
 
   .header {
     .title-group {
