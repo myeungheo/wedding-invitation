@@ -140,7 +140,7 @@ export const GuestBook = () => {
             <div className="title">
               <div className="name">{post.name}</div>
               <div className="date">
-                {dayjs.unix(post.timestamp).format("YYYY-MM-DD")}
+                {/*{dayjs.unix(post.timestamp).format("YYYY-MM-DD")}*/}
               </div>
             </div>
             <div className="content">{post.content}</div>
