@@ -57,10 +57,11 @@ export const GuestBook = () => {
         //   setPosts(data.posts)
         // }
 
+        // 여기서 가져온다.
         const q = query(
           collection(db, "guest"),
           orderBy("timestamp", "desc"), // ✅ timestamp 기준 내림차순 정렬
-          limit(5)
+          limit(100)
         );
 
         const snapshot = await getDocs(q);
@@ -75,7 +76,11 @@ export const GuestBook = () => {
         });
 
         if (datas.length > 0) {
-          setPosts(datas)
+
+          const shuffled = [...datas].sort(() => Math.random() - 0.5)
+          const randomFive = shuffled.slice(0, 5)
+
+          setPosts(randomFive)
         }
 
       } catch {}
@@ -90,7 +95,7 @@ export const GuestBook = () => {
 
   return (
     <LazyDiv className="card guestbook">
-      <h2 className="english">Guest Book</h2>
+      <h2 className="english">Guest Book (Random)</h2>
 
       <div className="break" />
 
@@ -130,7 +135,7 @@ export const GuestBook = () => {
                           닫기
                         </Button>
                       </>
-                    ),
+                    )
                   })
                 }
               }}
@@ -183,7 +188,7 @@ export const GuestBook = () => {
                       닫기
                     </Button>
                   </>
-                ),
+                )
               })
             }
           >
@@ -347,7 +352,8 @@ const AllGuestBookModal = ({
         if (res.ok) {
           const data = await res.json()
 
-          setPosts(data.posts)
+
+          setPosts(data)
           setTotalPages(Math.ceil(data.total / POSTS_PER_PAGE))
           if (data.total < offset) {
             setCurrentPage(Math.ceil(data.total / POSTS_PER_PAGE) - 1)
